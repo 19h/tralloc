@@ -1,12 +1,12 @@
 [package]
-authors = ["Geoffroy Couprie <geo.couprie@gmail.com>"]
+authors = ["Geoffroy Couprie <geo.couprie@gmail.com>", "Kenan Sulayman <kenan@sly.mn>"]
 categories = ["development-tools", "memory-management"]
-description = "track allocations and deallocations"
+description = "trace allocations and deallocations"
 keywords = ["allocator", "debugging"]
 license = "MIT"
-name = "tracing-allocator"
+name = "tralloc"
 readme = "README.md"
-repository = "https://github.com/geal/tracing_allocator"
+repository = "https://github.com/19h/tralloc"
 version = "0.1.0"
 
 [dependencies]

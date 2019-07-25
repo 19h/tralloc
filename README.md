@@ -1,8 +1,8 @@
-# Tracing allocator for Rust
+# tralloc: tracing allocator for Rust
 
-This project allows you to log all the allocations to a file.
+This project allows you to log all the allocations to stderr, stdout or a file.
 
-To include it in your project, initialize the library with a file like this:
+To use it, register the global allocator and activate it:
 
 ```rust
 #![feature(global_allocator)]
@@ -15,8 +15,7 @@ use std::fs::File;
 static GLOBAL: tracing_allocator::Allocator = tracing_allocator::Allocator{};
 
 fn main() {
-  let f = File::create("trace.txt").unwrap();
-  tracing_allocator::Allocator::initialize(&f);
+  tracing_allocator::Allocator::write_to_stderr();
   tracing_allocator::Allocator::activate();
 
   let s = String::from("Hello world!");
@@ -25,7 +24,7 @@ fn main() {
   v.push(1);
 ```
 
-The `trace.txt` file will then have the following content:
+The following will be printed:
 
 ```rust
 00029801ACDA259B A 00007FB780500000 000000000000000C
@@ -41,6 +40,9 @@ Columns:
 - memory address
 - size
 
-
 You can use the `activate` and `deactivate` methods to start
 and stop collection at any time.
+
+#### Note
+
+This repository is based on tracing_allocator. It was forked because of breaking changes in Rust internals and lack of communication from the original author.
