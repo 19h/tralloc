@@ -7,16 +7,14 @@ To use it, register the global allocator and activate it:
 ```rust
 #![feature(global_allocator)]
 
-extern crate tracing_allocator;
-
-use std::fs::File;
+extern crate tralloc;
 
 #[global_allocator]
-static GLOBAL: tracing_allocator::Allocator = tracing_allocator::Allocator{};
+static GLOBAL: tralloc::Allocator = tralloc::Allocator{};
 
 fn main() {
-  tracing_allocator::Allocator::write_to_stderr();
-  tracing_allocator::Allocator::activate();
+  tralloc::Allocator::write_to_stderr();
+  tralloc::Allocator::activate();
 
   let s = String::from("Hello world!");
 
